@@ -65,7 +65,18 @@ fn main() {
                     println!("");
                 }
                 3 => {
-                    println!("Delete expense");
+                    let mut delete_expense = String::new();
+                    println!("Delete expense by id: ");
+
+                    io::stdin().read_line(&mut delete_expense).expect("Failed to read input");
+
+                    let number: u64 = delete_expense.trim().parse().expect("Enter a valid number");
+
+                    expenses.retain(| expense| expense.id != number);
+
+                    println!("{}", "Expense deleted!".green().bold());
+                    println!("");
+
                 }
                 4 => {
                     println!("Quitting program!!!");
